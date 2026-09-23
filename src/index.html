@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="My personal website" />
+	<title>me</title>
+	<link rel="icon" href="" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Fredoka:wght@500;600;700&display=swap" />
+	<link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body class="intro">
+	<div class="intro-overlay" aria-hidden="true">
+		<span class="intro-text" id="intro-text"></span>
+	</div>
+	<div class="page">
+		<header class="box header">
+			<div>
+				<p class="meta">
+					<span id="host"></span>
+					<span id="commit"></span>
+				</p>
+				<h1 class="title"><span class="accent" id="name-username"></span></h1>
+				<p class="tagline" id="tagline"></p>
+			</div>
+			<div class="links">
+				<nav class="nav">
+					<a class="btn active" href="/" aria-current="page">home</a>
+					<a class="btn" href="/projects">projects</a>
+				</nav>
+				<ul class="socials" id="socials"></ul>
+			</div>
+		</header>
+
+		<div class="box notice" id="notice"></div>
+
+		<main class="grid">
+			<aside class="col">
+				<section class="box profile">
+					<div class="avatar-wrap">
+						<img class="avatar" id="avatar" src="" alt="avatar" width="128" height="128" />
+						<span class="presence" id="presence" title="offline"></span>
+					</div>
+					<h2 class="rainbow" id="hello"></h2>
+					<p class="muted small" id="username"></p>
+					<p class="muted" id="bio"></p>
+					<dl class="facts" id="facts"></dl>
+				</section>
+
+				<section class="box">
+					<h2 class="box-title">Buttons</h2>
+					<div class="buttons" id="buttons"></div>
+				</section>
+
+				<section class="box spotify" id="spotify" hidden>
+					<button class="sp-widget" id="sp-widget" type="button" aria-label="Play song preview">
+						<span class="sp-art-wrap">
+							<img class="sp-art" id="sp-art" alt="" width="72" height="72" />
+							<span class="sp-play" id="sp-play" aria-hidden="true">▶</span>
+							<svg class="sp-ring" viewBox="0 0 36 36" aria-hidden="true">
+								<circle cx="18" cy="18" r="16" pathLength="100" id="sp-ring" />
+							</svg>
+						</span>
+						<span class="sp-info">
+							<strong class="sp-title" id="sp-title"></strong>
+							<span class="sp-artist" id="sp-artist"></span>
+							<span class="sp-album muted small" id="sp-album"></span>
+						</span>
+						<span class="eq" id="sp-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+					</button>
+					<div class="sp-progress" id="sp-progress-wrap">
+						<span class="sp-time" id="sp-elapsed">0:00</span>
+						<span class="sp-bar"><span id="sp-bar"></span></span>
+						<span class="sp-time" id="sp-duration">0:00</span>
+					</div>
+					<audio id="sp-audio" preload="none"></audio>
+				</section>
+
+				<section class="box" id="activity">
+					<div class="activities" id="activity-list">
+						<p class="muted small">loading...</p>
+					</div>
+				</section>
+
+				<section class="box" id="skills">
+					<h2 class="box-title">Languages and Libraries</h2>
+					<ul class="skills" id="skill-list"></ul>
+				</section>
+			</aside>
+
+			<div class="col">
+				<section class="box" id="about">
+					<h2 class="big accent">About me</h2>
+					<hr />
+					<div id="about-list"></div>
+				</section>
+
+				<section class="box" id="favorites">
+					<h2 class="big accent">Favorite things</h2>
+					<hr />
+					<div id="favorites-list"></div>
+				</section>
+			</div>
+		</main>
+	</div>
+
+	<script type="module" src="./main.ts"></script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+{
+	"projects": [
+		{
+			"name": "Project One",
+			"desc": "",
+			"href": "#",
+			"icon": ""
+		},
+		{
+			"name": "Project Two",
+			"desc": "",
+			"href": "#",
+			"icon": ""
+		},
+		{
+			"name": "Project Three",
+			"desc": "",
+			"href": "#",
+			"icon": ""
+		}
+	],
+	"skills": [
+		{
+			"name": "TypeScript",
+			"level": 100,
+			"color": "pink"
+		}
+	],
+	"about": [
+		{
+			"title": "",
+			"note": "",
+			"items": [
+				""
+			]
+		}
+	],
+	"favorites": [
+		{
+			"title": "",
+			"note": "",
+			"items": [
+				""
+			]
+		}
+	],
+	"buttons": []
+}

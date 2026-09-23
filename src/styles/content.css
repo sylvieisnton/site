@@ -1,0 +1,133 @@
+#about-list,
+#favorites-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 20px 28px;
+}
+
+.about-block {
+	& h3 {
+		font-size: 1.15rem;
+	}
+
+	&>.muted {
+		margin-bottom: 8px;
+	}
+}
+
+.bullets {
+	list-style: none;
+
+	& li::before {
+		content: "• ";
+		color: var(--accent-2);
+	}
+}
+
+.projects {
+	display: flex;
+	flex-direction: column;
+	gap: calc(var(--spacing) * 1.5);
+}
+
+.project {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	border: 2px solid transparent;
+	border-radius: 8px;
+	padding: 10px 12px;
+	transition:
+		border-color 0.15s,
+		background 0.15s;
+
+	&:hover {
+		border-color: var(--border);
+		background: var(--overlay);
+		text-decoration: none;
+	}
+
+	& .icon {
+		width: 40px;
+		text-align: center;
+		font-size: 1.6rem;
+	}
+
+	& strong {
+		display: block;
+		color: var(--accent);
+	}
+
+	& small {
+		color: var(--muted);
+		font-weight: 400;
+	}
+}
+
+.projects-page {
+	display: flex;
+	flex-direction: column;
+	gap: calc(var(--spacing) * 4);
+
+	& .projects {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+	}
+}
+
+.section-note {
+	margin: -8px 0 14px;
+}
+
+.gh-link {
+	float: right;
+	font-weight: 400;
+}
+
+.skills {
+	display: flex;
+	flex-direction: column;
+	gap: calc(var(--spacing) * 2.5);
+	list-style-type: none;
+
+	& li {
+		display: grid;
+		grid-template-columns: 8px minmax(0, 1fr) 72px 36px;
+		align-items: center;
+		gap: 10px;
+
+		&> :not(.bar):not(.dot) {
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+	}
+
+	& .dot {
+		width: 8px;
+		height: 8px;
+		background: var(--c);
+		border-radius: 50%;
+	}
+
+	& .bar {
+		height: 8px;
+		background: var(--overlay);
+		border-radius: 999px;
+		overflow: hidden;
+
+		& span {
+			display: block;
+			width: var(--w);
+			height: 100%;
+			background: var(--c);
+			border-radius: inherit;
+			animation: grow 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+		}
+	}
+
+	& .pct {
+		color: var(--muted);
+		text-align: right;
+		font-size: 11px;
+	}
+}

@@ -1,0 +1,12 @@
+{
+  "status": "online",
+
+  "activities": [
+    { "type": "watching", "name": "websites" }
+  ],
+  "rotateSeconds": 120,
+
+  "filterActivities": ["Spotify"],
+
+  "userRefreshMinutes": 10
+}

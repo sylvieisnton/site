@@ -1,0 +1,92 @@
+.repos {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	gap: calc(var(--spacing) * 3);
+}
+
+.repo {
+	display: flex;
+	flex-direction: column;
+	gap: calc(var(--spacing) * 1.5);
+	color: var(--text);
+	font-weight: 400;
+	background: var(--base);
+	border: 2px solid var(--border);
+	border-radius: var(--radius-lg);
+	box-shadow: 3px 3px 0 var(--shadow);
+	padding: calc(var(--spacing) * 3);
+	transition:
+		transform 0.1s,
+		box-shadow 0.1s;
+
+	&:hover {
+		box-shadow: 4px 4px 0 var(--accent);
+		text-decoration: none;
+		transform: translate(-1px, -1px);
+	}
+}
+
+.repo-head {
+	display: flex;
+	align-items: center;
+	gap: calc(var(--spacing) * 2);
+	min-width: 0;
+
+	& strong {
+		color: var(--accent-2);
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+}
+
+.repo-owner {
+	flex: none;
+	width: 20px;
+	height: 20px;
+	border-radius: 4px;
+}
+
+.repo-desc {
+	flex: 1;
+	color: var(--subtle);
+}
+
+.topics {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--spacing);
+}
+
+.tag {
+	background: color-mix(in srgb, var(--accent-2) 18%, var(--overlay));
+	border-radius: 999px;
+	padding: 0 6px;
+	font-size: 11px;
+}
+
+.repo-meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 4px 12px;
+	font-size: 11px;
+
+	& .lang {
+		display: inline-flex;
+		align-items: center;
+		gap: 5px;
+
+		& i {
+			width: 8px;
+			height: 8px;
+			background: var(--c, var(--accent));
+			border-radius: 50%;
+		}
+	}
+
+	& .contrib {
+		color: var(--green);
+		font-weight: 600;
+	}
+}

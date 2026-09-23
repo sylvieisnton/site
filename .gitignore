@@ -1,0 +1,9 @@
+node_modules
+dist
+.env
+*.log
+
+profile.json
+bot.json
+content.json
+pfp.png

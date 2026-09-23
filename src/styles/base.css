@@ -1,0 +1,83 @@
+:root {
+	--base: #faf4ed;
+	--surface: #fffaf3;
+	--overlay: #f2e9e1;
+	--muted: #9893a5;
+	--subtle: #797593;
+	--text: #575279;
+	--pink: #ffaded;
+	--gold: #ea9d34;
+	--rose: #d7827e;
+	--indigo: #286983;
+	--green: #aafcbc;
+	--iris: #907aa9;
+	--border: #575279;
+	--shadow: #dfdad9;
+	--accent: var(--pink);
+	--accent-2: var(--iris);
+	--display: "Fredoka", "JetBrains Mono", ui-monospace, monospace;
+	--spacing: 0.25rem;
+	--radius-md: 0.375rem;
+	--radius-lg: 0.5rem;
+	color-scheme: light;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	min-height: 100vh;
+	color: var(--text);
+	background: linear-gradient(135deg, var(--base) 0%, #fff8fa 52%, #ffe8f0 100%);
+	background-attachment: fixed;
+	word-break: break-word;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 14px;
+	line-height: 1.6;
+	transition:
+		background-color 0.25s,
+		color 0.25s;
+	overflow-x: hidden;
+}
+
+img,
+svg {
+	max-width: 100%;
+}
+
+pre,
+code {
+	white-space: pre-wrap;
+}
+
+a {
+	color: var(--accent);
+	font-weight: 600;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline dashed;
+		text-underline-offset: 3px;
+	}
+}
+
+hr {
+	border: none;
+	border-top: 2px solid var(--border);
+	margin: 16px 0;
+}
+
+.muted {
+	color: var(--subtle);
+}
+
+.small {
+	font-size: 12px;
+}
+
+.accent {
+	color: var(--accent);
+}

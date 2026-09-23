@@ -1,0 +1,19 @@
+services:
+    site:
+        image: personal-site
+        build: .
+        restart: unless-stopped
+        ports:
+            - "3000:3000"
+        volumes:
+            - ./src/data/profile.json:/config/profile.json:ro
+            - ./src/data/bot.json:/config/bot.json:ro
+            - ./src/data/content.json:/config/content.json:ro
+            - ./src/public/pfp.png:/config/pfp.png:ro
+        env_file: .env
+        cap_drop: [ALL]
+        read_only: true
+        security_opt:
+            - no-new-privileges:true
+        tmpfs:
+            - /tmp

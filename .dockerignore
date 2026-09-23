@@ -1,0 +1,13 @@
+node_modules
+dist
+data
+.env
+.env.*
+!.env.example
+.git
+.vscode
+*.log
+**/*.test.ts
+README.md
+Dockerfile
+docker-compose.yml

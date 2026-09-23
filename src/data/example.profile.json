@@ -1,0 +1,56 @@
+{
+	"name": "",
+	"username": "",
+	"pronouns": [
+		"",
+		""
+	],
+	"status": "",
+	"avatar": "",
+	"tagline": "",
+	"bio": [
+		""
+	],
+	"notice": "",
+	"facts": [
+		{
+			"label": "location",
+			"value": ""
+		},
+		{
+			"label": "timezone",
+			"value": ""
+		}
+	],
+	"discord": {
+		"id": "",
+		"sync": [
+			"name",
+			"avatar",
+			"status",
+			"activities"
+		]
+	},
+	"socials": [
+		{
+			"label": "email",
+			"value": "you@example.com",
+			"href": "mailto:you@example.com"
+		},
+		{
+			"label": "github",
+			"value": "@username",
+			"href": "https://github.com/username"
+		},
+		{
+			"label": "discord",
+			"value": "@username",
+			"href": "https://discord.com/"
+		},
+		{
+			"label": "twitter",
+			"value": "@username",
+			"href": "https://x.com/username"
+		}
+	]
+}
