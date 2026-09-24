@@ -6,10 +6,10 @@ services:
         ports:
             - "3000:3000"
         volumes:
-            - ./src/data/profile.json:/config/profile.json:ro
-            - ./src/data/bot.json:/config/bot.json:ro
-            - ./src/data/content.json:/config/content.json:ro
-            - ./src/public/pfp.png:/config/pfp.png:ro
+            - ./config/profile.json:/app/src/data/profile.json:ro
+            - ./config/bot.json:/app/src/data/bot.json:ro
+            - ./config/content.json:/app/src/data/content.json:ro
+            - ./config/pfp.png:/app/src/public/pfp.png:ro
         env_file: .env
         cap_drop: [ALL]
         read_only: true
