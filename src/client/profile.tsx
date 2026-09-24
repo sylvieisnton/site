@@ -1,4 +1,4 @@
-import profileJson from "../data/profile.json";
+import profileJson from "../data/example.profile.json";
 import { render } from "preact";
 import type { Activity } from "../discord";
 import { renderActivities } from "./activities";
