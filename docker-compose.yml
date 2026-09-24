@@ -1,15 +1,12 @@
 services:
     site:
-        image: personal-site
+        image: sylvieisnton/site:latest
         build: .
         restart: unless-stopped
         ports:
             - "3000:3000"
         volumes:
-            - ./config/profile.json:/app/src/data/profile.json:ro
-            - ./config/bot.json:/app/src/data/bot.json:ro
-            - ./config/content.json:/app/src/data/content.json:ro
-            - ./config/pfp.png:/app/src/public/pfp.png:ro
+            - ./config:/config:ro
         env_file: .env
         cap_drop: [ALL]
         read_only: true
@@ -17,3 +14,21 @@ services:
             - no-new-privileges:true
         tmpfs:
             - /tmp
+
+    caddy:
+        image: caddy:2
+        restart: unless-stopped
+        depends_on:
+            - site
+        ports:
+            - "80:80"
+            - "443:443"
+            - "443:443/udp"
+        volumes:
+            - ./Caddyfile:/etc/caddy/Caddyfile:ro
+            - caddy_data:/data
+            - caddy_config:/config
+
+volumes:
+    caddy_data:
+    caddy_config:

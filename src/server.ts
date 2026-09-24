@@ -94,12 +94,63 @@ function getProfile() {
 	};
 }
 
+const rawPages = new Map<string, string>();
+async function bundledHtml(path: string): Promise<string> {
+	const cached = rawPages.get(path);
+	if (cached) return cached;
+	const html: string = await fetch(`http://127.0.0.1:${server.port}${path}`).then((r) => r.text());
+	if (process.env.NODE_ENV === "production") rawPages.set(path, html);
+	return html;
+}
+
+function originOf(req: Request) {
+	const url = new URL(req.url);
+	const proto = req.headers.get("x-forwarded-proto")?.split(",")[0]?.trim() || url.protocol.replace(":", "");
+	const host = req.headers.get("x-forwarded-host") ?? req.headers.get("host") ?? url.host;
+	return `${proto}://${host}`;
+}
+
+async function page(req: Request, internal: string): Promise<Response> {
+	const p = getProfile();
+	const name = String(p.name ?? "").trim();
+	const first = name.split(" ")[0] || name;
+	const title = first ? `${first}'s website` : "website";
+	const desc = String(p.desc ?? "").trim();
+	const image = p.avatar ? new URL(p.avatar, originOf(req)).href : "";
+
+	const meta = (value: string) => ({
+		element(el: HTMLRewriterTypes.Element) {
+			if (value) el.setAttribute("content", value);
+			else el.remove();
+		},
+	});
+
+	const html: string = new HTMLRewriter()
+		.on("title", { element: (el) => void el.setInnerContent(title) })
+		.on('meta[name="description"]', meta(desc))
+		.on('meta[property="og:title"]', meta(title))
+		.on('meta[property="og:description"]', meta(desc))
+		.on('meta[property="og:image"]', meta(image))
+		.on("link[rel=icon]", {
+			element(el) {
+				if (p.avatar) el.setAttribute("href", p.avatar);
+			},
+		})
+		.transform(await bundledHtml(internal));
+
+	return new Response(html, {
+		headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" },
+	});
+}
+
 const server = Bun.serve({
 	hostname: process.env.HOST ?? "0.0.0.0",
 	port: Number(process.env.PORT ?? 3000),
 	routes: {
-		"/": homepage,
-		"/projects": projectsPage,
+		"/_page/home": homepage,
+		"/_page/projects": projectsPage,
+		"/": (req) => page(req, "/_page/home"),
+		"/projects": (req) => page(req, "/_page/projects"),
 		"/avatar": () => {
 			const local = localAvatar();
 			if (!local?.file) return new Response("no local avatar", { status: 404 });
@@ -112,7 +163,8 @@ const server = Bun.serve({
 		"/api/health": () => Response.json({ ok: true }),
 		"/api/profile": () => Response.json(getProfile(), { headers: { "cache-control": "no-store" } }),
 		"/api/content": () => Response.json(getConfig("content"), { headers: { "cache-control": "no-store" } }),
-		"/api/events": (req) => {
+		"/api/events": (req, srv) => {
+			srv.timeout(req, 0);
 			let ctrl: ReadableStreamDefaultController;
 			let ping: ReturnType<typeof setInterval>;
 			const stream = new ReadableStream({
@@ -126,7 +178,7 @@ const server = Bun.serve({
 						} catch {
 							clearInterval(ping);
 						}
-					}, 25000);
+					}, 15000);
 				},
 				cancel() {
 					clearInterval(ping);
