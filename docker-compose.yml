@@ -1,8 +1,11 @@
 services:
     site:
+        container_name: site
         image: sylvieisnton/site:latest
-        build: .
+        pull_policy: always
         restart: unless-stopped
+        labels:
+            - com.centurylinklabs.watchtower.enable=true
         ports:
             - "3000:3000"
         volumes:
@@ -16,6 +19,7 @@ services:
             - /tmp
 
     caddy:
+        container_name: caddy
         image: caddy:2
         restart: unless-stopped
         depends_on:
@@ -28,6 +32,17 @@ services:
             - ./Caddyfile:/etc/caddy/Caddyfile:ro
             - caddy_data:/data
             - caddy_config:/config
+
+    watchtower:
+        container_name: watchtower
+        image: nickfedor/watchtower:latest
+        restart: unless-stopped
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        environment:
+            - WATCHTOWER_LABEL_ENABLE=true
+            - WATCHTOWER_CLEANUP=true
+            - WATCHTOWER_POLL_INTERVAL=300
 
 volumes:
     caddy_data:
