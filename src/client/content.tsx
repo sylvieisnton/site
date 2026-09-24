@@ -25,7 +25,7 @@ const Blocks = ({ items }: { items: Content["about"] }) => (
 			<div class="about-block">
 				<h3>{item.title}</h3>
 				<p class="muted small">{item.note}</p>
-				<ul class="bullets">{item.items.map((entry) => <li>{entry.href ? <a href={entry.href}>{entry.name}</a> : entry.name}</li>)}</ul>
+				<ul class="bullets">{item.items.map((entry) => <li>{entry.href ? <a target="_blank" rel="noopener" href={entry.href}>{entry.name}</a> : entry.name}</li>)}</ul>
 			</div>
 		))}
 	</>
