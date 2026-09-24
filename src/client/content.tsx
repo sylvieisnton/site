@@ -3,11 +3,15 @@ import { render } from "preact";
 import { $, load } from "./dom";
 import { languageColor } from "./languages";
 
+type Link = {
+	name: string; href?: string;
+};
+
 export type Content = {
 	projects: { name: string; desc: string; href: string; icon: string }[];
 	skills: { name: string; level: number; color: string }[];
-	about: { title: string; note: string; items: string[] }[];
-	favorites: { title: string; note: string; items: string[] }[];
+	about: { title: string; note: string; items: Link[] }[];
+	favorites: { title: string; note: string; items: Link[] }[];
 	buttons: { src: string; alt: string; href: string }[];
 };
 
@@ -21,7 +25,7 @@ const Blocks = ({ items }: { items: Content["about"] }) => (
 			<div class="about-block">
 				<h3>{item.title}</h3>
 				<p class="muted small">{item.note}</p>
-				<ul class="bullets">{item.items.map((entry) => <li>{entry}</li>)}</ul>
+				<ul class="bullets">{item.items.map((entry) => <li>{entry.href ? <a href={entry.href}>{entry.name}</a> : entry.name}</li>)}</ul>
 			</div>
 		))}
 	</>
